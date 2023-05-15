@@ -1,9 +1,9 @@
 ---
 # try also 'default' to start simple
-theme: seriph
+# theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
+# background: https://source.unsplash.com/collection/94734566/1920x1080
 # apply any windi css classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -14,7 +14,6 @@ lineNumbers: false
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
-
   Learn more at [Sli.dev](https://sli.dev)
 # persist drawings in exports and build
 drawings:
@@ -23,6 +22,7 @@ drawings:
 transition: slide-left
 # use UnoCSS
 css: unocss
+colorSchema: dark
 ---
 
 # Welcome to Slidev
@@ -51,6 +51,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 ---
 transition: fade-out
+layout: intro
+growX: 10
+growY: 90
+style: 'padding-left: 8rem;'
 ---
 
 # What is Slidev?
@@ -442,7 +446,4 @@ class: text-center
 
 [Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
 
----
-layout: end
----
 
