@@ -35,3 +35,20 @@ h6 {
 iframe {
   background: black;
 }
+
+.font-brush {
+  font-family: 'Input Mono Narrow';
+}
+
+/* 使用本地字体 */
+@font-face {
+  font-family: 'smiley';
+  font-style: normal;
+  font-weight: 200;
+  src: url('/smiley-sans/SmileySans-Oblique.ttf') format('ttf'),
+    url('/smiley-sans/SmileySans-Oblique.ttf.woff2') format('woff2');
+}
+
+*{
+  font-family: 'smiley';
+}
