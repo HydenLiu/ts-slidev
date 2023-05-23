@@ -5,7 +5,9 @@ css: unocss
 colorSchema: dark
 transition: fade-out
 growSize: 1.5
+title: 一起来做 <span text="#8b5cf6" fw-800 class="font-brush">TS</span> 类型体操
 ---
+
 <img class="w-60 absolute top-10 left-10" src="/type-challenges-logo.svg" />
 
 # 一起来做 <span text="#8b5cf6" fw-800 class="font-brush">TS</span> 类型体操
@@ -18,9 +20,10 @@ growSize: 1.5
 
 <div class="abs-br m-6 flex gap-2">
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
+    <carbon:edit /> 
   </button>
 </div>
+
 
 ---
 transition: fade-out
@@ -195,7 +198,6 @@ style: 'padding-left: 8rem;'
 <div class="number-bg">2</div>
 
 ---
-layout: center
 growX: 50
 growY: 120
 growSize: 1.5
@@ -203,17 +205,7 @@ growSize: 1.5
 
 ## 9种运算逻辑
 
-<div grid="~ cols-2 gap-4" m="-t-2">
-<div>01. 条件：<span class="text-light-blue-400">T extends U ? X : Y</span></div>
-<div>02. 约束：<span class="text-light-blue-400">extends</span></div>
-<div>03. 推导：<span class="text-light-blue-400">infer</span></div>
-<div>04. 联合：<span class="text-light-blue-400">｜</span></div>
-<div>05. 交叉：<span class="text-light-blue-400">&</span></div>
-<div>06. 索引查询：<span class="text-light-blue-400">keyof</span></div>
-<div>08. 索引访问：<span class="text-light-blue-400">T[K]</span></div>
-<div>09. 索引遍历：<span class="text-light-blue-400">in</span></div>
-<div>09. 重映射：<span class="text-light-blue-400">as</span></div>
-</div>
+<Logic />
 
 ---
 layout: center
@@ -577,14 +569,12 @@ growY: 50
 growSize: 0.75
 ---
 
-- Readonly 把索引变为只读
+- ReturnType 获取返回值类型
 
 ```ts
-type TReadonly<T> = {
-  readonly [P in keyof T]: T[P]
-}
+type MyReturnType<T> = T extends (...args: unknown[]) => infer R ? R : never
 
-type ReadonlyRes = TReadonly<{ name?: 'hyden'; age?: 18 }>
+type ReturnTypeRes = MyReturnType<()=> string> // string
 ```
 
 <br>
@@ -628,14 +618,16 @@ type ExcludeRes = TExclude<'aa' | 'bb' | 'cc', 'aa'>
 More: [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 
 ---
-layout: center
 growX: -10
 growY: -10
 ---
 
-## 一些工具方法 [^1]
+## 一些工具方法 [^1](https://github.com/type-challenges/type-challenges)
 
-- 判断两个类型是否相等
+<div flex gap-4>
+<div v-click="1">
+
+- 判断两个类型是否相等 [^2](https://github.com/Microsoft/TypeScript/issues/27024#issuecomment-421529650)
 
 ```ts
 type Equal<X, Y> = (<T>() => T extends X ? 1 : 2)
@@ -644,14 +636,39 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2)
   : false
 ```
 
-- 判断是否是 any [^2]
+- 判断是否是 any [^3](https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360)
 
 ```ts
 type isAny<T> = 0 extends 1 & T ? true : false
 ```
 
 [^1]: [More](https://github.com/type-challenges/type-challenges)
-[^2]: [Link](https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360)
+[^2]: [Link](https://github.com/Microsoft/TypeScript/issues/27024#issuecomment-421529650)
+[^3]: [Link](https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360)
+
+</div>
+
+<div v-click="2">
+
+- 给定一个字符串 T，找到其中的第一个非重复字符并返回它的索引。如果不存在，返回-1
+
+```ts
+type FirstUniqueCharIndex<
+  T extends string,
+  _Acc extends string[] = []
+> = T extends ''
+  ? -1
+  : T extends `${infer H}${infer R}`
+  ? H extends _Acc[number]
+    ? FirstUniqueCharIndex<R, [..._Acc, H]>
+    : R extends `${string}${H}${string}`
+    ? FirstUniqueCharIndex<R, [..._Acc, H]>
+    : _Acc['length']
+  : never
+```
+
+</div>
+</div>
 
 
 ---
@@ -662,16 +679,24 @@ growY: 0
 
 # 其他
 
-- TS 内置高级类型：[Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
-- TS 类型体操练习 [Type Challenges](https://github.com/type-challenges/type-challenges)
-- TS 类型的工具库 [Zod](https://zod.dev/)
-- TS 在线编译器 [TS Playground](https://www.typescriptlang.org/play)
+- <p op-50>一些工具和练习网站</p>
+
+<div class="number-bg">4</div>
+
+---
+layout: center
+growX: 50
+growY: 120
+---
+
+<Other />
+
 
 ---
 layout: intro
 class: text-center pb-5
 growX: 50
-growY: 120
+growY: 0
 ---
 
 # Thank You!
