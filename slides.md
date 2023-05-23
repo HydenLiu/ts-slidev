@@ -32,22 +32,10 @@ style: 'padding-left: 8rem;'
 
 # 目录
 
-- 📝 **背景** - 类型体操的背景，通过背景了解为什么要在项目中加入类型体操
-- 🎨 **套路** - 了解类型体操的主要类型、运算逻辑、和类型套路
+- 🎨 **背景** - 类型体操的背景，通过背景了解为什么要在项目中加入类型体操
+- 📝 **套路** - 了解类型体操的运算逻辑、和类型套路
 - 🧑‍💻 **实践** - 类型体操实践，解析 Typescript 内置高级类型
 - 🏆 **其他** - 常用工具网站和其他
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
 
 ---
 layout: center
@@ -58,8 +46,10 @@ growSize: 1.5
 
 # 背景
 
-- 什么是类型安全，
-- 怎么实现类型安全
+<div class="number-bg">1</div>
+
+- 什么是类型安全？
+- 怎么实现类型安全？
 - 什么是类型体操？
 
 ---
@@ -69,79 +59,42 @@ growY: 50
 growSize: 0.75
 ---
 
-### 什么是类型安全
+### 👷 什么是类型安全
+<br>
+
+<v-clicks>
 
 - 一个简单的定义就是，类型安全就是只做该类型允许的操作。比如对于 boolean 类型，不允许加减乘除运算，只允许赋值 true、false。
-  > 当我们能做到类型安全时，可以大量的减少代码中潜在的问题，大量提高代码质量。
-
-<img
-  v-click
-  class="absolute -bottom-4 -left-3 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+> 当我们能做到类型安全时，可以大量的减少代码中潜在的问题，大量提高代码质量。
+</v-clicks>
 
 ---
 layout: center
 growX: 100
 growY: 80
 growSize: 1.5
-clicks: 4
 ---
 
-# Code
+### 🔧 怎么实现类型安全 
+> 这里介绍两种类型检查机制，分别是动态类型检查和静态类型检查。
 
-Use code snippets and get the highlighting directly![^1]
+<div flex="~ gap-6">
+<div v-click="1" class="rounded-8px mt-8 slidev-content">
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
+#### 动态类型检查
 
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
-}
-```
+- Javascript 就是典型的动态类型检查，它在编译时，没有类型信息，到运行时才检查，导致很多隐藏 bug。
 
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
+</div>
 
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
+<div v-click="2" class="rounded-8px mt-8 slidev-content">
 
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+#### 静态类型检查
 
----
-layout: cover
-growX: 0
-growY: 50
----
+- Typescript 作为 Javascript 的超集，采用的是静态类型检查，在编译时就有类型信息，检查类型问题，减少运行时的潜在问题。
 
-### 怎么实现类型安全
-
-这里介绍两种类型检查机制，分别是动态类型检查和静态类型检查。
-
-#### 3.1 动态类型检查
-
-Javascript 就是典型的动态类型检查，它在编译时，没有类型信息，到运行时才检查，导致很多隐藏 bug。
-
-#### 3.2 静态类型检查
-
-### Typescript 作为 Javascript 的超集，采用的是静态类型检查，在编译时就有类型信息，检查类型问题，减少运行时的潜在问题。
+</div>
+</div>
 
 ---
 layout: center
@@ -158,13 +111,17 @@ growX: 50
 growY: 0
 ---
 
-### 什么是类型体操?
+### 🤸 什么是类型体操?
+<v-click>
 
-- 类型编程，对类型参数做各种逻辑运算，以产生新的类型
+> 就是类型编程，对类型参数做各种逻辑运算，以产生新的类型
+</v-click>
 
-<div v-click grid="~ cols-2 gap-4">
-<div>
-简单的类型系统
+<div  grid="~ cols-2 gap-4" mt-6>
+<div v-click>
+
+#### 简单的类型系统
+>只基于声明的类型做类型检查
 
 ```ts
 // number
@@ -178,11 +135,11 @@ function add(a: string, b: string) {
 }
 ```
 
-- <p text="12px #aaa">只基于声明的类型做类型检查</p>
-
 </div>
 <div v-click>
-泛型类型系统
+
+#### 泛型类型系统
+> 支持类型参数，通过给参数传参，可以动态定义类型，让类型更加灵活。
 
 ```ts
 function add<T>(a: T, b: T) {
@@ -193,18 +150,18 @@ add(1, 2) // 3
 add('Hello', ' world') // 'Hello world'
 ```
 
-- <p text="12px #aaa">泛型类型系统，它支持类型参数，通过给参数传参，可以动态定义类型，让类型更加灵活。</p>
-
 </div>
 </div>
 
-<hr mb-20px />
+<v-clicks>
 
 ```ts
 function getPropValue<T>(obj: T, key) {
   return obj[key]
 }
 ```
+
+</v-clicks>
 
 ---
 layout: center
@@ -224,13 +181,18 @@ function getPropValue<T extends Object, K extends keyof T>(
 
 ---
 transition: fade-out
-layout: intro
+layout: center
 growX: 10
 growY: 90
 style: 'padding-left: 8rem;'
 ---
 
-## 9 种运算逻辑，4 个类型套路
+# 套路
+
+- 9 种运算逻辑
+- 4 个类型套路
+
+<div class="number-bg">2</div>
 
 ---
 layout: center
@@ -239,7 +201,7 @@ growY: 120
 growSize: 1.5
 ---
 
-### 运算逻辑
+## 9种运算逻辑
 
 <div grid="~ cols-2 gap-4" m="-t-2">
 <div>01. 条件：<span class="text-light-blue-400">T extends U ? X : Y</span></div>
@@ -257,8 +219,8 @@ growSize: 1.5
 layout: center
 ---
 
-- 条件：T extends U ? X : Y
-  条件判断和 js 逻辑相同，都是如果满足条件就返回 x 否则返回 y。
+#### 条件：T extends U ? X : Y
+> 条件判断和 js 逻辑相同，都是如果满足条件就返回 x 否则返回 y。
 
 ```ts
 // 如果 T 是 2 的子类型，那么类型是 true，否则类型是 false。
@@ -268,14 +230,23 @@ type res = isTwo<1> // false
 
 ---
 layout: center
-growX: 0
+growX: -30
 growY: 50
 growSize: 1.5
 ---
 
-- 约束：extends
+#### 约束：extends
 
-```ts
+```ts {all|1|all}
+function getPropValue<T extends Object, K extends keyof T>(
+  obj: T,
+  key: K
+): T[K] {
+  return obj[key]
+}
+```
+
+```ts {0|6|all}
 // 通过 T extends Length 约束了 T 的类型，必须是包含 length 属性，且 length 的类型必须是 number。
 interface Length {
   length: number
@@ -287,13 +258,13 @@ function fn1<T extends Length>(arg: T): number {
 ```
 
 ---
+layout: center
 growX: 110
 growY: -10
-clicks: 2
 ---
 
-- 推导：infer
-  推导则是类似 js 的正则匹配，都满足公式条件时，可以提取公式中的变量，直接返回或者再次加工都可以。
+#### 推导：infer
+> 类似 js 的正则匹配，都满足公式条件时，可以提取公式中的变量，直接返回或者再次加工都可以。
 
 ```ts
 // 提取元组类型的第一个元素：
@@ -310,7 +281,7 @@ growY: 90
 growSize: 1.5
 ---
 
-- 联合： ｜
+#### 联合： ｜
 
 ```ts
 type Union = 1 | 2 | 3
@@ -318,7 +289,7 @@ type Union = 1 | 2 | 3
 
 <br>
 
-- 交叉： &
+#### 交叉： &
 
 ```ts
 // 交叉代表对类型做合并
@@ -329,8 +300,8 @@ type ObjType = { a: number } & { c: boolean }
 layout: center
 ---
 
-- 索引查询：keyof T
-  - 用于获取某种类型的所有键，其返回值是联合类型
+#### 索引查询：keyof T
+> 用于获取某种类型的所有键，其返回值是联合类型
 
 ```ts
 type k = keyof {
@@ -346,8 +317,8 @@ growY: 100
 growSize: 1.1
 ---
 
-- 索引访问：T[K]
-  - T[K] 用于访问索引，得到索引对应的值的联合类型。
+#### 索引访问：T[K]
+> 用于访问索引，得到索引对应的值的联合类型。
 
 ```ts
 // 对象类型
@@ -365,12 +336,13 @@ type value3 = arr[number] // string | number
 ```
 
 ---
+layout: center
 growX: 110
 growY: 110
 ---
 
-- 索引遍历：in
-  - in 用于遍历联合类型
+#### 索引遍历：in
+> 用于遍历联合类型
 
 ```ts
 const obj = {
@@ -397,11 +369,11 @@ growY: 160
 growSize: 1.5
 ---
 
-- 重映射： as
-  - 用于修改类型
+#### 重映射： as
+> 用于修改类型
 
-<div v-click flex gap-4>
-<div>
+<div flex gap-4>
+<div v-click>
 
 ```ts
 // 通过索引查询 keyof，索引访问 T[k]，索引遍历 in，重映射 as，返回全新的 key、value 构成的新的映射类型
@@ -424,7 +396,7 @@ type res = MapType<{ a: number; b: string }>
 
 </div>
 
-<div >
+<div v-click>
 
 ```ts
 const obj = {
@@ -447,7 +419,7 @@ const obj = {
 layout: center
 ---
 
-### 运算套路
+## 4个运算套路
 
 - 模式匹配做提取
 - 重新构造做变换
@@ -461,9 +433,10 @@ growY: 90
 style: 'padding-left: 8rem;'
 ---
 
-- 模式匹配做提取
+#### 模式匹配做提取
 
 ```ts
+// 1、
 type mid<T extends string> = T extends `${infer L}${infer M}${infer R}` ? M : ''
 
 type m = mid<'abc'> // b
@@ -474,6 +447,7 @@ type m = mid<'abc'> // b
 <div v-click>
 
 ```ts
+// 2、
 type GetParameters<Func extends Function> = Func extends (
   ...args: infer Args
 ) => unknown
@@ -491,10 +465,11 @@ growX: 50
 growY: 120
 ---
 
-- 重新构造做变换
-  - 重新构造做变换的意思是想要变化就需要重新构造新的类型，并且可以在构造新类型的过程中对原类型做一些过滤和变换
+#### 重新构造做变换
+> 想要变化就需要重新构造新的类型，并且可以在构造新类型的过程中对原类型做一些过滤和变换
 
 ```ts
+// 类型首字母大写
 type CapitalizeStr<Str extends string> =
   Str extends `${infer First}${infer Rest}` ? `${Uppercase<First>}${Rest}` : Str
 
@@ -508,11 +483,11 @@ growY: 90
 style: 'padding-left: 8rem;'
 ---
 
-- 递归复用做循环
-  - TS 类型编程本身不支持循环，但是可以通过递归完成不确定数量的类型编程，达到循环的效果
+#### 递归复用做循环
+> TS 类型编程本身不支持循环，但是可以通过递归完成不确定数量的类型编程，达到循环的效果
 
 ```ts
-// 数组类型
+// 1、数组类型
 type ReverseArr<Arr extends unknown[]> = Arr extends [
   infer First,
   ...infer Rest
@@ -524,7 +499,7 @@ type ReverseArrResult = ReverseArr<[1, 2, 3, 4, 5]> // [5, 4, 3, 2, 1]
 ```
 
 ```ts
-// 字符串类型
+// 2、字符串类型
 type ReverseStr<Str extends string> = Str extends `${infer First}${infer Rest}`
   ? `${ReverseStr<Rest>}${First}`
   : Str
@@ -536,21 +511,24 @@ type ReverseStrResult = ReverseStr<'hyden'> // nedyh
 layout: quote
 ---
 
-- 数组长度做计数
-- TS 类型编程本身是不支持做加减乘除运算的，但是可以通过递归构造指定长度的数组，然后取数组长度的方式来完成数值的加减乘除。
+#### 数组长度做计数
+> TS 类型编程本身也是不支持做加减乘除运算的，但是可以通过递归构造指定长度的数组，然后取数组长度的方式来完成数值的加减乘除。
 
 ```ts
+// 构建指定长度的数组
 type BuildArray<
   Length extends number,
   Un = unknown,
   Arr extends unknown[] = []
 > = Arr['length'] extends Length ? Arr : BuildArray<Length, Un, [...Arr, Un]>
 
+// 数组长度做加法
 type Add<Num1 extends number, Num2 extends number> = [
   ...BuildArray<Num1>,
   ...BuildArray<Num2>
 ]['length']
 
+// res: 5
 type AddResult = Add<2, 3> // 5
 ```
 
@@ -562,6 +540,14 @@ growSize: 1.5
 ---
 
 # 类型体操实践
+- 实现一些 TS 内置高级类型
+- 实现一些常用的类型工具
+
+<div class="number-bg">3</div>
+
+---
+
+## 实现一些 TS 内置高级类型
 
 - partial 把索引变为可选
 
@@ -586,7 +572,6 @@ type RequiredRes = TRequired<{ name?: 'hyden'; age?: 18 }>
 ```
 
 ---
-layout: center
 growX: -10
 growY: 50
 growSize: 0.75
@@ -602,6 +587,8 @@ type TReadonly<T> = {
 type ReadonlyRes = TReadonly<{ name?: 'hyden'; age?: 18 }>
 ```
 
+<br>
+
 - Pick 保留过滤索引
 
 ```ts
@@ -613,11 +600,9 @@ type PickRes = TPick<{ name: 'hyden'; age: 18 }, 'name'>
 ```
 
 ---
-layout: center
 growX: 50
 growY: -40
 growSize: 1.5
-clicks: 4
 ---
 
 - Record 创建映射类型
@@ -629,6 +614,8 @@ type TRecord<K extends keyof any, T> = {
 
 type RecordRes = TRecord<'hello' | 'world', string>
 ```
+
+<br>
 
 - Exclude 删除联合类型的一部分
 

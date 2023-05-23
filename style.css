@@ -49,6 +49,34 @@ iframe {
     url('/smiley-sans/SmileySans-Oblique.ttf.woff2') format('woff2');
 }
 
-*{
+h1, h2, h3, h4, h5, h6, p{
   font-family: 'smiley';
+}
+
+h2{
+  color: #dde3ff;
+}
+
+h3{
+  color: #6d87b3;
+}
+
+h4{
+  color: #c6d5ff;
+}
+
+/* 好看的渐变边框，加点亮色阴影 */
+.slidev-content {
+  /* border: 1px solid #1b1f3b;
+box-shadow: inset 0 0 10px #1b1f3b; */
+border: 1px solid #4b5162;
+border-radius: 5px;
+box-shadow: 0 0 10px #4b5162;
+
+  font-size: 12px;
+  padding: 12px;
+}
+
+.number-bg {
+  --uno: absolute text-40em font-bold op8 left--10 top--50;
 }
